@@ -12,6 +12,11 @@ jobs:
     
     steps:
       - run: echo "👋 Hello World!"
+      
       - name: Checkout
         uses: actions/checkout@v3.5.2 
-      - run: tree
+      
+      - name: List files in repository
+        run: |
+          echo "The repository ${{ github.repository }} contains th efollowing files:"
+          tree
