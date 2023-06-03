@@ -34,11 +34,12 @@ jobs:
     
     steps:
       - run: |
-          echo "${{  github.event_name }}"
           echo "Homedrive: ${{ inputs.homedrive }}"
           echo "Log level: ${{ inputs.logLevel }}"
           echo "Tag source: ${{ inputs.tag }}"
           echo "Environment ${{ inputs.environment }}"
+        name: Workflow Inputs
+        if: github.event_name == workflow_dispatch
           
       - run: echo "👋 Hello World!"
       
