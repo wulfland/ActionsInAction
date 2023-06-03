@@ -7,6 +7,26 @@ on:
     paths: 
       - NewFile.md
   workflow_dispatch:
+    inputs:
+      homedrive:
+        description: 'The home drive on the machine'
+        required: true
+      logLevel:
+        description: 'Log level'
+        default: 'warning' 
+        type: choice
+        options:
+        - info
+        - warning
+        - debug 
+      tag:
+        description: 'Apply tag after successfull test run'
+        required: true 
+        type: boolean 
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true 
 
 jobs:
   MyFirstJob:
@@ -22,3 +42,4 @@ jobs:
         run: |
           echo "The repository ${{ github.repository }} contains th efollowing files:"
           tree
+      
