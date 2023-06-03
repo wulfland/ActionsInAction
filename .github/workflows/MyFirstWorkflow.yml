@@ -4,8 +4,7 @@ on:
   push:
     branches: 
       - main
-    paths: 
-      - NewFile.md
+
   workflow_dispatch:
     inputs:
       homedrive:
@@ -39,7 +38,7 @@ jobs:
           echo "Tag source: ${{ inputs.tag }}"
           echo "Environment ${{ inputs.environment }}"
         name: Workflow Inputs
-        if: github.event_name == workflow_dispatch
+        if: ${{ github.event_name == 'workflow_dispatch' }}
           
       - run: echo "👋 Hello World!"
       
