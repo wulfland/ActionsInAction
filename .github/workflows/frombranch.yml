@@ -4,5 +4,6 @@ on: [pull_request, pull_request_target, workflow_dispatch]
 
 jobs:
   test:
+    runs-on: ubuntu-latest
     steps:
       - run: echo "Hello wrom branch workflow"
