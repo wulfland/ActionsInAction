@@ -1,6 +1,6 @@
 name: Workflow in Branch
 
-on: [pull_request, pull_request_target, workflow_dispatch]
+on: [pull_request, pull_request_target, workflow_dispatch, push]
 
 jobs:
   test:
