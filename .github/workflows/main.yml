@@ -5,13 +5,15 @@ on: [workflow_dispatch]
 jobs:
   job_1:
     strategy:
+      fail-fast: false
+      max-parallel: 3
       matrix:
         os_version: [macos-latest, ubuntu-latest]
-        node_version: [10, 12, 14]
-        
+        node_version: [12, 14, 16]
+            
     name: My first job
     runs-on: ${{ matrix.os_version }}
     steps:
-      - uses: actions/setup-node@v3.6
+      - uses: actions/setup-node@v3.6.0
         with:
           node-version: ${{ matrix.node_version }}
