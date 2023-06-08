@@ -11,9 +11,10 @@ jobs:
         run: |
           the_secret='123456'
           echo "::add-mask::$the_secret"
+          echo "$the_secret"
           echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
       - name: Use that secret output (protected by a mask)
         run: |
           echo "the secret number is ${{ steps.sets-a-secret.outputs.secret-number }}"
-          echo "masked? ${{ steps.sets-a-secret.outputs.secret-number == '12345' }}"
+          echo "${{ steps.sets-a-secret.outputs.secret-number }}" | sed 's/./& /g'
 
