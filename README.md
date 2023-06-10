@@ -1,3 +1,3 @@
 # ActionsInAction
 
-Test trigger
+Test the labeler
