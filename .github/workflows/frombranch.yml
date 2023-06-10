@@ -1,12 +1,12 @@
 name: Workflow in Branch
 
-on: [pull_request, pull_request_target, workflow_dispatch]
+on: [pull_request, pull_request_target, workflow_dispatch, push]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello wrom branch workflow"
+      - run: echo "Hello wrom branch new-workflow"
       - run: |
           echo "Event: ${{ github.event_name }}"
           echo "Base: ${{ github.base_ref }}"
