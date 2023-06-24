@@ -6,6 +6,10 @@ jobs:
   generate-a-secret-output:
     runs-on: ubuntu-latest
     steps:
+      - name: Access secres
+        run: |
+          echo "Secret: [${{ secrets.CONNECTION_STRING }}]"
+          echo "Var: [${{ vars.MY_VAR }}]"
       - name: Write messages to the log
         run: |
           echo "::debug::This is a debug message"
