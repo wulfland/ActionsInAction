@@ -6,6 +6,12 @@ jobs:
   generate-a-secret-output:
     runs-on: ubuntu-latest
     steps:
+      - name: Write messages to the log
+        run: |
+          echo "::debug::This is a debug message"
+          echo "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+          echo "::error file=app.js,line=1,col=5,endColumn=7::Error in app.js"
+          
       - id: sets-a-secret
         name: Generate, mask, and output a secret
         run: |
