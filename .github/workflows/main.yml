@@ -3,28 +3,17 @@ name: Main
 on: [workflow_dispatch]
 
 jobs:
-  generate-a-secret-output:
-    runs-on: ubuntu-latest
+  job_1:
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        os_version: [macos-latest, ubuntu-latest]
+        node_version: [12, 14, 16]
+            
+    name: My first job
+    runs-on: ${{ matrix.os_version }}
     steps:
-      - name: Access secres
-        run: |
-          echo "Secret: [${{ secrets.CONNECTION_STRING }}]"
-          echo "Var: [${{ vars.MY_VAR }}]"
-      - name: Write messages to the log
-        run: |
-          echo "::debug::This is a debug message"
-          echo "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
-          echo "::error file=app.js,line=1,col=5,endColumn=7::Error in app.js"
-          
-      - id: sets-a-secret
-        name: Generate, mask, and output a secret
-        run: |
-          the_secret='123456'
-          echo "::add-mask::$the_secret"
-          echo "$the_secret"
-          echo "secret-number=$the_secret" >> "$GITHUB_OUTPUT"
-      - name: Use that secret output (protected by a mask)
-        run: |
-          echo "the secret number is ${{ steps.sets-a-secret.outputs.secret-number }}"
-          echo "${{ steps.sets-a-secret.outputs.secret-number }}" | sed 's/./& /g'
-
+      - uses: actions/setup-node@v3.6.0
+        with:
+          node-version: ${{ matrix.node_version }}
